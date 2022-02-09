@@ -14,8 +14,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import TemplateView
+from users.views import CustomPasswordChangeView
+
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
+    # users
+    path('', include('users.urls')),
+    # groups
+    path('groups/', include('groups.urls')),
+
+
+    # allauth
+    path(
+        "email-confirmation-done/",
+        TemplateView.as_view(template_name="users/email_confirmation_done.html"),
+        name="account_email_confirmation_done",
+    ),
+    path(
+        'password/change/',
+        CustomPasswordChangeView.as_view(),
+        name='account_change_password',
+    ),
+    path('', include('allauth.urls')),
 ]
