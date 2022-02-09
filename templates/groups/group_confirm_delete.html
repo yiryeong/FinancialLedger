@@ -1,0 +1,16 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="confirm">
+    <p class="title">[{{object.name}}]</p>
+    <p>그룹 삭제하시겠습니까?</p>
+    <form method="POST">{% csrf_token %}
+        <ul class="confirm_btn">
+<!--            <input type="submit" value="삭제하기">-->
+            <li><input type="submit" value="삭제하기"></li>
+            <li><a href="{% url 'group-detail' object.id %}">취소</a></li>
+        </ul>
+    </form>
+</div>
+{% endblock content %}

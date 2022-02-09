@@ -25,7 +25,7 @@ urlpatterns = [
     # users
     path('', include('users.urls')),
     # groups
-    path('groups/', include('groups.urls')),
+    path('', include('groups.urls')),
 
 
     # allauth

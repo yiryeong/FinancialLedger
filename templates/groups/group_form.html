@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST">{% csrf_token %}
+        <div class="submit">
+            <input type="submit" value="저장">
+        </div>
+        <div class="editor">
+            <p>{{form.name}}</p>
+            {% for error in form.name.errors %}
+                <p class="error">{{error}}</p>
+            {% endfor %}
+        </div>
+    </form>
+    <div class="btn_back">
+        <a href="{% url 'group-list' %}" >돌아가기</a>
+    </div>
+{% endblock content %}

@@ -1,18 +1,35 @@
-<navbar>
-  {% if user.is_authenticated %}
-    <a href="{% url 'account_logout'%}">로그아웃</a>
-  {% else %}
-    <a href="{% url 'account_login' %}">로그인</a>
-    <a href="{% url 'account_signup' %}">회원가입</a>
-  {% endif %}
-</navbar>
-
-<h1>홈페이지</h1>
-
-{% if user.is_authenticated %}
-  <p>{{user}}님의 이메일은 {{user.email}}입니다.</p>
-  <p>{{user}}님이 속한 그룹은 {{user.group}}입니다.</p>
-  <p><a href="{% url 'account_change_password' %}">비밀번호 변경</a></p>
-{% else %}
-  <p>로그아웃된 상태입니다.</p>
-{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>그룹</title>
+    <meta charset="UTF-8">
+    {% block css %}
+    {% endblock css %}
+    <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
+</head>
+<body>
+   <div id="warp">
+        <div id="header">
+            <div id="nav">
+                <a href="{% url 'index' %}">홈으로 이동</a>
+            </div>
+            <br>
+            {% block group_header %}
+            {% endblock group_header %}
+        </div>
+        <div id="content">
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+        <div id="footer">
+            <div class="footer">
+                <p>footer</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

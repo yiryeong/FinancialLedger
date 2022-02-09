@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block group_header %}
+    <div class="container">
+        <h1 class="title">{{group.name}}</h1>
+    </div>
+{% endblock group_header %}
+
+{% block content %}
+    <div class="content">
+        <p class="text">{{group.name|linebreaksbr}}</p>
+    </div>
+    <div class="btn">
+        <div class="btn_list"><a href="{% url 'group-list' %}">목록으로</a></div>
+        <div class="btn_modify"><a href="{% url 'group-update' group.id %}">수정하기</a></div>
+        <div class="btn_delete"><a href="{% url 'group-delete' group.id %}">삭제하기</a></div>
+    </div>
+{% endblock content %}

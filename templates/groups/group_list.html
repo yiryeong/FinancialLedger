@@ -1,0 +1,39 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="btn_group">
+        <a href="{% url 'group-create'%}">그룹 추가</a>
+    </div>
+    {% if page_obj.object_list %}
+        <div class="group_container">
+            {% for group in page_obj.object_list %}
+                <div class="group">
+                    <a href="{% url 'group-detail' group.id %}">
+                        <p class="name">{{group.name}}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="paginator">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="first">first</a>
+                <a href="?page={{page_obj.previous_page_number}}" class="prev">prev</a>
+            {% endif %}
+
+            <span class="page">
+                <p>{{page_obj.number}} of {{page_obj.paginator.num_pages}}</p>
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{page_obj.next_page_number}}" class="next">next</a>
+                <a href="?page={{page_obj.paginator.num_pages}}" class="last">last</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="blank">
+            <p>조회 한 그룹이 존재하지 않습니다.</p>
+        </div>
+    {% endif %}
+{% endblock content %}
+
